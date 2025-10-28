@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
     return (
-        <div></div>
+        <div className="product-detail">
+            <div className="img-wrap">
+            </div>
+            <div className="info">
+            </div>
+        </div>
     )
 }
 

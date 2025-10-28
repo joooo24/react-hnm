@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import ProductAll from './pages/ProductAll'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
+import PrivateRoute from './components/PrivateRoute'
 import './App.css'
 
 function App() {
@@ -14,7 +15,11 @@ function App() {
         <Route path="/" element={<ProductAll />} />
         <Route
           path="/product/:id"
-          element={<ProductDetail />}
+          element={
+            <PrivateRoute>
+              <ProductDetail />
+            </PrivateRoute>
+          }
         />
         <Route path="/login" element={<Login />} />
       </Routes>

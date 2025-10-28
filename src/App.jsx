@@ -5,11 +5,11 @@ import ProductAll from './pages/ProductAll'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
 import PrivateRoute from './components/PrivateRoute'
-import './App.css'
+import './App.scss'
 
 function App() {
   return (
-    <div>
+    <div className='app-wrap'>
       <Nav />
       <Routes>
         <Route path="/" element={<ProductAll />} />

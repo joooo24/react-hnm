@@ -1,4 +1,3 @@
-import React from 'react'
 // 유저 스토리
 // - 유저는 메뉴와 상품들을 볼 수 있다.
 // - 유저는 로그인을 할 수 있다.
@@ -6,11 +5,31 @@ import React from 'react'
 // - 로그인한 유저는 상품디테일정보를 볼 수 있다.
 // - 유저는 상품을 검색할 수 있다.
 // - 유저는 로그아웃할 수 있다.
+import React from "react";
+import { Button, Container, Form } from "react-bootstrap";
+import "./Login.scss";
 
 const Login = () => {
     return (
-        <div></div>
-    )
-}
+        <Container>
+            <h3 className="page-title">로그인</h3>
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>ID</Form.Label>
+                    <Form.Control type="email" placeholder="Enter ID" />
+                </Form.Group>
 
-export default Login
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+                
+                <Button variant="dark" type="submit" className="w-100">
+                    로그인
+                </Button>
+            </Form>
+        </Container>
+    );
+};
+
+export default Login;

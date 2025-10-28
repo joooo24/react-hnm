@@ -16,10 +16,10 @@ const ProductCard = ({ item }) => {
             <div className="info">
                 <h3 className="name">{item?.title}</h3>
                 <p className="price">₩{item?.price}</p>
+                {item?.choice && <div className="choice">Conscious choice</div>}
             </div>
-            {(item?.choice || item?.new || item?.tags.length > 0) && (
+            {( item?.new || item?.tags.length > 0) && (
                 <ul className="tag-wrap">
-                    {item?.choice ? <li className="choice">MD추천</li> : null}
                     {item?.new ? <li className="new">신제품</li> : null}
                     {(item?.tags || []).map((tag, index) => (
                         <li key={index}>{tag}</li>

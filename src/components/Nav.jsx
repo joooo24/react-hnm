@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Nav.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,6 +8,12 @@ const Nav = () => {
     // const [keyword, setKeyword] = useState('')
     const [isLogin, setLogin] = useState(false);
     const categories = ["아우터", "상의", "하의"];
+    const navigate = useNavigate();
+
+    const goToLogin = () => {
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar">
             <div className="top-wrap">
@@ -23,7 +29,7 @@ const Nav = () => {
                             <span>로그아웃</span>
                         </button>
                     ) : (
-                        <button className="btn-login" onClick={() => setLogin(!isLogin)}>
+                        <button className="btn-login" onClick={goToLogin}>
                             <span>로그인</span>
                         </button>
                     )}

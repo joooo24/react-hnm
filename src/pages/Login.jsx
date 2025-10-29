@@ -12,9 +12,15 @@ import "./Login.scss";
 
 const Login = ({ onLogin }) => {
     const navigate = useNavigate();
+    const [id, setId] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!id.trim() || !password.trim()) {
+            alert('ID와 비밀번호를 입력해주세요.');
+            return;
+        }
         if (onLogin) {
             onLogin();
         }
@@ -27,12 +33,22 @@ const Login = ({ onLogin }) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>ID</Form.Label>
-                    <Form.Control type="email" placeholder="Enter ID" />
+                    <Form.Control
+                        type="email"
+                        placeholder="Enter ID"
+                        value={id}
+                        onChange={(e) => setId(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </Form.Group>
                 
                 <Button variant="dark" type="submit" className="w-100">

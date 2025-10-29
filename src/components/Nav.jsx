@@ -4,14 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = () => {
+const Nav = ({ isAuthenticated, setIsAuthenticated }) => {
     // const [keyword, setKeyword] = useState('')
-    const [isLogin, setLogin] = useState(false);
     const categories = ["아우터", "상의", "하의"];
     const navigate = useNavigate();
 
     const goToLogin = () => {
         navigate("/login");
+    };
+
+    const handleLogout = () => {
+        if (setIsAuthenticated) {
+            setIsAuthenticated(false);
+        }
     };
 
     return (
@@ -24,8 +29,8 @@ const Nav = () => {
                     />
                 </h2>
                 <div className="btn-wrap">
-                    {isLogin ? (
-                        <button className="btn-login" onClick={() => setLogin(!isLogin)}>
+                    {isAuthenticated ? (
+                        <button className="btn-login" onClick={handleLogout}>
                             <span>로그아웃</span>
                         </button>
                     ) : (

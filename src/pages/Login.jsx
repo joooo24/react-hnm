@@ -7,13 +7,24 @@
 // - 유저는 로그아웃할 수 있다.
 import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (onLogin) {
+            onLogin();
+        }
+        navigate('/');
+    };
+
     return (
         <Container>
             <h3 className="page-title">로그인</h3>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>ID</Form.Label>
                     <Form.Control type="email" placeholder="Enter ID" />

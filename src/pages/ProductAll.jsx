@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import "./ProductAll.scss";
 
 const ProductAll = () => {
     const [productList, setProductList] = useState([]);
@@ -27,13 +28,17 @@ const ProductAll = () => {
 
     return (
         <Container className="product-card-container">
-            <Row>
-                {filtered.map((item) => (
-                    <Col key={item.id} xs={6} md={4} lg={3}>
-                        <ProductCard item={item} />
-                    </Col>
-                ))}
-            </Row>
+            {keyword && filtered.length === 0 ? (
+                <div className="no-results">'{keyword}' 이름의 상품이 없습니다.</div>
+            ) : (
+                <Row>
+                    {filtered.map((item) => (
+                        <Col key={item.id} xs={6} md={4} lg={3}>
+                            <ProductCard item={item} />
+                        </Col>
+                    ))}
+                </Row>
+            )}
         </Container>
     );
 };

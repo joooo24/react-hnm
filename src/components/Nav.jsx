@@ -29,7 +29,7 @@ const Nav = ({ isAuthenticated, setIsAuthenticated }) => {
     return (
         <nav className="navbar">
             <div className="top-wrap">
-                <h2 className="logo-wrap">
+                <h2 className="logo-wrap" onClick={() => navigate("/")}>
                     <img
                         src="https://image.msscdn.net/display/images/2025/10/22/d9647c20f3cb47f8af1b7d4a360b936b.png"
                         alt=""

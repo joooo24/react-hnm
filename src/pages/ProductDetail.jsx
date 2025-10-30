@@ -34,14 +34,12 @@ const ProductDetail = () => {
         <div className="product-detail">
             <div className="thumbnail-wrap">
                 {Array.isArray(product?.tags) && product.tags.length > 0 && (
-                    <>
-                        <h4>태그</h4>
+                  
                         <ul className="tags">
                             {product.tags.map((t, i) => (
                                 <li key={i}>{t}</li>
                             ))}
                         </ul>
-                    </>
                 )}
                 <div className="img-wrap">
                     <img src={product?.img} alt={product?.title || "product"} />

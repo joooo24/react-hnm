@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 
 const ProductAll = () => {
     const [productList, setProductList] = useState([]);
+    const [searchParams] = useSearchParams();
+    const keyword = (searchParams.get("q") || "").toLowerCase();
 
     const getProducts = async () => {
         const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -13,6 +16,11 @@ const ProductAll = () => {
         setProductList(data);
     };
 
+    const filtered = productList.filter((item) => {
+        if (!keyword) return true;
+        return item?.title?.toLowerCase().includes(keyword);
+    });
+
     useEffect(() => {
         getProducts();
     }, []);
@@ -20,7 +28,7 @@ const ProductAll = () => {
     return (
         <Container className="product-card-container">
             <Row>
-                {productList.map((item) => (
+                {filtered.map((item) => (
                     <Col key={item.id} xs={6} md={4} lg={3}>
                         <ProductCard item={item} />
                     </Col>

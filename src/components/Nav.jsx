@@ -5,9 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = ({ isAuthenticated, setIsAuthenticated }) => {
-    // const [keyword, setKeyword] = useState('')
+    const [keyword, setKeyword] = useState("");
     const categories = ["아우터", "상의", "하의"];
     const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const q = keyword.trim();
+
+        navigate(q ? `/?q=${encodeURIComponent(q)}` : "/");
+    };
 
     const goToLogin = () => {
         navigate("/login");
@@ -49,8 +56,14 @@ const Nav = ({ isAuthenticated, setIsAuthenticated }) => {
                     ))}
                 </ul>
 
-                <form className="search-box">
-                    <input type="text" className="search-input" placeholder="상품을 검색하세요" />
+                <form className="search-box" onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        className="search-input"
+                        placeholder="상품을 검색하세요"
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
+                    />
                     <button type="submit" className="search-button">
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
